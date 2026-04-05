@@ -98,6 +98,20 @@
             <a-asset-item id="pasta-model" src="./models/pasta.glb"></a-asset-item>
             <a-asset-item id="steak-model" src="./models/steak.glb"></a-asset-item>
             <a-asset-item id="dessert-model" src="./models/desserts.glb"></a-asset-item>
+            <a-asset-item id="bruschetta-model" src="./models/day_71_-_1_scan_a_day_-_bruschetta.glb"></a-asset-item>
+            <a-asset-item id="soup-model" src="./models/low_poly_vegetable_soup.glb"></a-asset-item>
+            <a-asset-item id="calamari-model" src="./models/the_grove_of_hobe_sound_-_app_-_calamari.glb"></a-asset-item>
+            <a-asset-item id="salmon-model" src="./models/grilled_salmon_fish-poly.glb"></a-asset-item>
+            <a-asset-item id="chicken-model" src="./models/roasted_chicken.glb"></a-asset-item>
+            <a-asset-item id="risotto-model" src="./models/bario_black_rice_bowl_scaniverse_lidar.glb"></a-asset-item>
+            <a-asset-item id="lasagna-model" src="./models/lasagna.glb"></a-asset-item>
+            <a-asset-item id="tiramisu-model" src="./models/tiramisu.glb"></a-asset-item>
+            <a-asset-item id="cheesecake-model" src="./models/cheesecake.glb"></a-asset-item>
+            <a-asset-item id="gelato-model" src="./models/gelato.glb"></a-asset-item>
+            <a-asset-item id="coffee-model" src="./models/caffe_latte_espresso_bitter.glb"></a-asset-item>
+            <a-asset-item id="latte-model" src="./models/caffe_latte_cup.glb"></a-asset-item>
+            <a-asset-item id="cocktail-model" src="./models/cocktail_martini.glb"></a-asset-item>
+            <a-asset-item id="lemonade-model" src="./models/homemade_lemonade.glb"></a-asset-item>
         </a-assets>
 
         <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
@@ -135,29 +149,29 @@
                 name: 'Bruschetta',
                 description: 'Toasted bread with fresh tomatoes, basil, and garlic',
                 price: '$8.99',
-                model: '#salad-model',
-                scale: '0.04 0.04 0.04'
+                model: '#bruschetta-model',
+                scale: '0.05 0.05 0.05'
             },
             soup: {
                 name: 'Soup of the Day',
                 description: 'Chef\'s daily creation with artisan bread',
                 price: '$7.99',
-                model: '#salad-model',
-                scale: '0.04 0.04 0.04'
+                model: '#soup-model',
+                scale: '0.08 0.08 0.08'
             },
             salad: {
                 name: 'Garden Salad',
                 description: 'Fresh mixed greens with cherry tomatoes, cucumber',
                 price: '$9.99',
                 model: '#salad-model',
-                scale: '0.04 0.04 0.04'
+                scale: '0.15 0.15 0.15'
             },
             calamari: {
                 name: 'Fried Calamari',
                 description: 'Crispy squid rings with marinara sauce',
                 price: '$12.99',
-                model: '#salad-model',
-                scale: '0.04 0.04 0.04'
+                model: '#calamari-model',
+                scale: '0.05 0.05 0.05'
             },
             
             // MAIN COURSES
@@ -193,28 +207,28 @@
                 name: 'Grilled Salmon',
                 description: 'Fresh Atlantic salmon with lemon butter sauce',
                 price: '$26.99',
-                model: '#steak-model',
-                scale: '0.15 0.15 0.15'
+                model: '#salmon-model',
+                scale: '0.1 0.1 0.1'
             },
             chicken: {
                 name: 'Roasted Chicken',
                 description: 'Half chicken with rosemary, garlic, and potatoes',
                 price: '$19.99',
-                model: '#burger-model',
-                scale: '0.03 0.03 0.03'
+                model: '#chicken-model',
+                scale: '0.08 0.08 0.08'
             },
             risotto: {
                 name: 'Mushroom Risotto',
                 description: 'Creamy Arborio rice with wild mushrooms',
                 price: '$18.99',
-                model: '#pasta-model',
-                scale: '0.08 0.08 0.08'
+                model: '#risotto-model',
+                scale: '0.03 0.03 0.03'
             },
             lasagna: {
                 name: 'Beef Lasagna',
                 description: 'Layers of pasta, beef ragù, and melted cheese',
                 price: '$17.99',
-                model: '#pasta-model',
+                model: '#lasagna-model',
                 scale: '0.08 0.08 0.08'
             },
             
@@ -230,22 +244,22 @@
                 name: 'Tiramisu',
                 description: 'Espresso-soaked ladyfingers and mascarpone',
                 price: '$8.99',
-                model: '#dessert-model',
-                scale: '0.12 0.12 0.12'
+                model: '#tiramisu-model',
+                scale: '0.08 0.08 0.08'
             },
             cheesecake: {
                 name: 'New York Cheesecake',
                 description: 'Creamy cheesecake with berry compote',
                 price: '$9.99',
-                model: '#dessert-model',
-                scale: '0.12 0.12 0.12'
+                model: '#cheesecake-model',
+                scale: '0.03 0.03 0.03'
             },
             icecream: {
                 name: 'Gelato Selection',
                 description: 'Three scoops of artisan Italian gelato',
                 price: '$7.99',
-                model: '#dessert-model',
-                scale: '0.12 0.12 0.12'
+                model: '#gelato-model',
+                scale: '0.03 0.03 0.03'
             },
             
             // DRINKS
@@ -253,36 +267,36 @@
                 name: 'Espresso',
                 description: 'Rich Italian espresso shot',
                 price: '$3.99',
-                model: '#dessert-model',
-                scale: '0.12 0.12 0.12'
+                model: '#coffee-model',
+                scale: '0.08 0.08 0.08'
             },
             latte: {
                 name: 'Caffè Latte',
                 description: 'Espresso with steamed milk',
                 price: '$5.99',
-                model: '#dessert-model',
-                scale: '0.12 0.12 0.12'
+                model: '#latte-model',
+                scale: '0.15 0.15 0.15'
             },
             wine: {
                 name: 'House Wine',
                 description: 'Glass of red or white wine',
                 price: '$8.99',
-                model: '#dessert-model',
-                scale: '0.12 0.12 0.12'
+                model: '#cocktail-model',
+                scale: '0.15 0.15 0.15'
             },
             cocktail: {
                 name: 'Signature Cocktail',
                 description: 'Today\'s special creation',
                 price: '$12.99',
-                model: '#dessert-model',
-                scale: '0.12 0.12 0.12'
+                model: '#cocktail-model',
+                scale: '0.15 0.15 0.15'
             },
             lemonade: {
                 name: 'Fresh Lemonade',
                 description: 'Homemade lemonade with mint',
                 price: '$4.99',
-                model: '#dessert-model',
-                scale: '0.12 0.12 0.12'
+                model: '#lemonade-model',
+                scale: '0.15 0.15 0.15'
             }
         };
 
