@@ -80,6 +80,37 @@
     </style>
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+    
+    <script>
+        // Dish data - model paths and scales
+        const dishes = {
+            bruschetta: { name: 'Bruschetta', description: 'Toasted bread with fresh tomatoes, basil', price: '$8.99', model: './models/day_71_-_1_scan_a_day_-_bruschetta.glb', scale: '0.05 0.05 0.05' },
+            soup: { name: 'Soup of the Day', description: 'Chef\'s daily creation with artisan bread', price: '$7.99', model: './models/low_poly_vegetable_soup.glb', scale: '0.08 0.08 0.08' },
+            salad: { name: 'Garden Salad', description: 'Fresh mixed greens with cherry tomatoes', price: '$9.99', model: './models/salad.glb', scale: '0.15 0.15 0.15' },
+            calamari: { name: 'Fried Calamari', description: 'Crispy squid rings with marinara sauce', price: '$12.99', model: './models/the_grove_of_hobe_sound_-_app_-_calamari.glb', scale: '0.05 0.05 0.05' },
+            burger: { name: 'Classic Burger', description: 'Juicy beef patty with lettuce, tomato, cheese', price: '$14.99', model: './models/burger.glb', scale: '0.03 0.03 0.03' },
+            pizza: { name: 'Margherita Pizza', description: 'Traditional Italian pizza with mozzarella', price: '$16.99', model: './models/pizza.glb', scale: '0.15 0.15 0.15' },
+            pasta: { name: 'Spaghetti Carbonara', description: 'Creamy pasta with bacon and parmesan', price: '$15.99', model: './models/pasta.glb', scale: '0.08 0.08 0.08' },
+            steak: { name: 'Grilled Ribeye', description: 'Premium 12oz ribeye with herb butter', price: '$32.99', model: './models/steak.glb', scale: '0.15 0.15 0.15' },
+            salmon: { name: 'Grilled Salmon', description: 'Atlantic salmon with lemon butter sauce', price: '$26.99', model: './models/grilled_salmon_fish-poly.glb', scale: '0.1 0.1 0.1' },
+            chicken: { name: 'Roasted Chicken', description: 'Half chicken with rosemary and potatoes', price: '$19.99', model: './models/roasted_chicken.glb', scale: '0.08 0.08 0.08' },
+            risotto: { name: 'Mushroom Risotto', description: 'Creamy Arborio rice with wild mushrooms', price: '$18.99', model: './models/bario_black_rice_bowl_scaniverse_lidar.glb', scale: '0.03 0.03 0.03' },
+            lasagna: { name: 'Beef Lasagna', description: 'Layers of pasta, beef ragù, and cheese', price: '$17.99', model: './models/lasagna.glb', scale: '0.08 0.08 0.08' },
+            dessert: { name: 'Chocolate Lava Cake', description: 'Warm chocolate cake with molten center', price: '$9.99', model: './models/desserts.glb', scale: '0.12 0.12 0.12' },
+            tiramisu: { name: 'Tiramisu', description: 'Espresso-soaked ladyfingers and mascarpone', price: '$8.99', model: './models/tiramisu.glb', scale: '0.08 0.08 0.08' },
+            cheesecake: { name: 'New York Cheesecake', description: 'Creamy cheesecake with berry compote', price: '$9.99', model: './models/cheesecake.glb', scale: '0.03 0.03 0.03' },
+            icecream: { name: 'Gelato Selection', description: 'Three scoops of artisan Italian gelato', price: '$7.99', model: './models/gelato.glb', scale: '0.03 0.03 0.03' },
+            coffee: { name: 'Espresso', description: 'Rich Italian espresso shot', price: '$3.99', model: './models/caffe_latte_espresso_bitter.glb', scale: '0.08 0.08 0.08' },
+            latte: { name: 'Caffè Latte', description: 'Espresso with steamed milk', price: '$5.99', model: './models/caffe_latte_cup.glb', scale: '0.15 0.15 0.15' },
+            wine: { name: 'House Wine', description: 'Glass of red or white wine', price: '$8.99', model: './models/cocktail_martini.glb', scale: '0.15 0.15 0.15' },
+            cocktail: { name: 'Signature Cocktail', description: 'Today\'s special creation', price: '$12.99', model: './models/cocktail_martini.glb', scale: '0.15 0.15 0.15' },
+            lemonade: { name: 'Fresh Lemonade', description: 'Homemade lemonade with mint', price: '$4.99', model: './models/homemade_lemonade.glb', scale: '0.15 0.15 0.15' }
+        };
+
+        // Get selected dish
+        const selectedDishId = localStorage.getItem('selectedDish') || 'burger';
+        const dish = dishes[selectedDishId] || dishes.burger;
+    </script>
 </head>
 <body>
     <a href="index.html" class="back-button">← Back to Menu</a>
@@ -91,27 +122,9 @@
         vr-mode-ui="enabled: false"
         device-orientation-permission-ui="enabled: false"
     >
-        <a-assets timeout="60000">
-            <a-asset-item id="burger-model" src="./models/burger.glb"></a-asset-item>
-            <a-asset-item id="pizza-model" src="./models/pizza.glb"></a-asset-item>
-            <a-asset-item id="salad-model" src="./models/salad.glb"></a-asset-item>
-            <a-asset-item id="pasta-model" src="./models/pasta.glb"></a-asset-item>
-            <a-asset-item id="steak-model" src="./models/steak.glb"></a-asset-item>
-            <a-asset-item id="dessert-model" src="./models/desserts.glb"></a-asset-item>
-            <a-asset-item id="bruschetta-model" src="./models/day_71_-_1_scan_a_day_-_bruschetta.glb"></a-asset-item>
-            <a-asset-item id="soup-model" src="./models/low_poly_vegetable_soup.glb"></a-asset-item>
-            <a-asset-item id="calamari-model" src="./models/the_grove_of_hobe_sound_-_app_-_calamari.glb"></a-asset-item>
-            <a-asset-item id="salmon-model" src="./models/grilled_salmon_fish-poly.glb"></a-asset-item>
-            <a-asset-item id="chicken-model" src="./models/roasted_chicken.glb"></a-asset-item>
-            <a-asset-item id="risotto-model" src="./models/bario_black_rice_bowl_scaniverse_lidar.glb"></a-asset-item>
-            <a-asset-item id="lasagna-model" src="./models/lasagna.glb"></a-asset-item>
-            <a-asset-item id="tiramisu-model" src="./models/tiramisu.glb"></a-asset-item>
-            <a-asset-item id="cheesecake-model" src="./models/cheesecake.glb"></a-asset-item>
-            <a-asset-item id="gelato-model" src="./models/gelato.glb"></a-asset-item>
-            <a-asset-item id="coffee-model" src="./models/caffe_latte_espresso_bitter.glb"></a-asset-item>
-            <a-asset-item id="latte-model" src="./models/caffe_latte_cup.glb"></a-asset-item>
-            <a-asset-item id="cocktail-model" src="./models/cocktail_martini.glb"></a-asset-item>
-            <a-asset-item id="lemonade-model" src="./models/homemade_lemonade.glb"></a-asset-item>
+        <a-assets timeout="30000">
+            <!-- Only load the selected dish model -->
+            <a-asset-item id="dish-model-asset"></a-asset-item>
         </a-assets>
 
         <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
@@ -121,7 +134,6 @@
             <a-gltf-model
                 id="dish-model"
                 position="0 0.05 0"
-                scale="0.05 0.05 0.05"
                 rotation="0 0 0"
                 animation="property: rotation; to: 0 360 0; loop: true; dur: 8000; easing: linear"
             ></a-gltf-model>
@@ -135,185 +147,27 @@
         </div>
         
         <div id="dish-info" class="dish-info hidden">
-            <h3 id="dish-name">Dish Name</h3>
-            <p id="dish-description">Description</p>
-            <p id="dish-price" class="price">$0.00</p>
+            <h3 id="dish-name"></h3>
+            <p id="dish-description"></p>
+            <p id="dish-price" class="price"></p>
         </div>
     </div>
 
     <script>
-        // Dish data - ADJUST SCALE VALUES HERE
-        const dishes = {
-            // STARTERS
-            bruschetta: {
-                name: 'Bruschetta',
-                description: 'Toasted bread with fresh tomatoes, basil, and garlic',
-                price: '$8.99',
-                model: '#bruschetta-model',
-                scale: '0.05 0.05 0.05'
-            },
-            soup: {
-                name: 'Soup of the Day',
-                description: 'Chef\'s daily creation with artisan bread',
-                price: '$7.99',
-                model: '#soup-model',
-                scale: '0.08 0.08 0.08'
-            },
-            salad: {
-                name: 'Garden Salad',
-                description: 'Fresh mixed greens with cherry tomatoes, cucumber',
-                price: '$9.99',
-                model: '#salad-model',
-                scale: '0.15 0.15 0.15'
-            },
-            calamari: {
-                name: 'Fried Calamari',
-                description: 'Crispy squid rings with marinara sauce',
-                price: '$12.99',
-                model: '#calamari-model',
-                scale: '0.05 0.05 0.05'
-            },
-            
-            // MAIN COURSES
-            burger: {
-                name: 'Classic Burger',
-                description: 'Juicy beef patty with fresh lettuce, tomato, cheese',
-                price: '$14.99',
-                model: '#burger-model',
-                scale: '0.03 0.03 0.03'
-            },
-            pizza: {
-                name: 'Margherita Pizza',
-                description: 'Traditional Italian pizza with fresh mozzarella, basil',
-                price: '$16.99',
-                model: '#pizza-model',
-                scale: '0.15 0.15 0.15'
-            },
-            pasta: {
-                name: 'Spaghetti Carbonara',
-                description: 'Creamy pasta with crispy bacon, parmesan cheese',
-                price: '$15.99',
-                model: '#pasta-model',
-                scale: '0.08 0.08 0.08'
-            },
-            steak: {
-                name: 'Grilled Ribeye',
-                description: 'Premium 12oz ribeye steak with herb butter',
-                price: '$32.99',
-                model: '#steak-model',
-                scale: '0.15 0.15 0.15'
-            },
-            salmon: {
-                name: 'Grilled Salmon',
-                description: 'Fresh Atlantic salmon with lemon butter sauce',
-                price: '$26.99',
-                model: '#salmon-model',
-                scale: '0.1 0.1 0.1'
-            },
-            chicken: {
-                name: 'Roasted Chicken',
-                description: 'Half chicken with rosemary, garlic, and potatoes',
-                price: '$19.99',
-                model: '#chicken-model',
-                scale: '0.08 0.08 0.08'
-            },
-            risotto: {
-                name: 'Mushroom Risotto',
-                description: 'Creamy Arborio rice with wild mushrooms',
-                price: '$18.99',
-                model: '#risotto-model',
-                scale: '0.03 0.03 0.03'
-            },
-            lasagna: {
-                name: 'Beef Lasagna',
-                description: 'Layers of pasta, beef ragù, and melted cheese',
-                price: '$17.99',
-                model: '#lasagna-model',
-                scale: '0.08 0.08 0.08'
-            },
-            
-            // DESSERTS
-            dessert: {
-                name: 'Chocolate Lava Cake',
-                description: 'Warm chocolate cake with molten center',
-                price: '$9.99',
-                model: '#dessert-model',
-                scale: '0.12 0.12 0.12'
-            },
-            tiramisu: {
-                name: 'Tiramisu',
-                description: 'Espresso-soaked ladyfingers and mascarpone',
-                price: '$8.99',
-                model: '#tiramisu-model',
-                scale: '0.08 0.08 0.08'
-            },
-            cheesecake: {
-                name: 'New York Cheesecake',
-                description: 'Creamy cheesecake with berry compote',
-                price: '$9.99',
-                model: '#cheesecake-model',
-                scale: '0.03 0.03 0.03'
-            },
-            icecream: {
-                name: 'Gelato Selection',
-                description: 'Three scoops of artisan Italian gelato',
-                price: '$7.99',
-                model: '#gelato-model',
-                scale: '0.03 0.03 0.03'
-            },
-            
-            // DRINKS
-            coffee: {
-                name: 'Espresso',
-                description: 'Rich Italian espresso shot',
-                price: '$3.99',
-                model: '#coffee-model',
-                scale: '0.08 0.08 0.08'
-            },
-            latte: {
-                name: 'Caffè Latte',
-                description: 'Espresso with steamed milk',
-                price: '$5.99',
-                model: '#latte-model',
-                scale: '0.15 0.15 0.15'
-            },
-            wine: {
-                name: 'House Wine',
-                description: 'Glass of red or white wine',
-                price: '$8.99',
-                model: '#cocktail-model',
-                scale: '0.15 0.15 0.15'
-            },
-            cocktail: {
-                name: 'Signature Cocktail',
-                description: 'Today\'s special creation',
-                price: '$12.99',
-                model: '#cocktail-model',
-                scale: '0.15 0.15 0.15'
-            },
-            lemonade: {
-                name: 'Fresh Lemonade',
-                description: 'Homemade lemonade with mint',
-                price: '$4.99',
-                model: '#lemonade-model',
-                scale: '0.15 0.15 0.15'
-            }
-        };
+        // Set dish info
+        document.getElementById('dish-name').textContent = dish.name;
+        document.getElementById('dish-description').textContent = dish.description;
+        document.getElementById('dish-price').textContent = dish.price;
 
-        // Get selected dish from localStorage
-        const selectedDishId = localStorage.getItem('selectedDish') || 'burger';
-        const dish = dishes[selectedDishId] || dishes.burger;
+        // Load only the selected model
+        const assetItem = document.getElementById('dish-model-asset');
+        assetItem.setAttribute('src', dish.model);
 
-        // Wait for scene to load, then set the model
+        // When scene loads, set model source and scale
         document.querySelector('a-scene').addEventListener('loaded', () => {
             const model = document.getElementById('dish-model');
-            model.setAttribute('src', dish.model);
+            model.setAttribute('gltf-model', '#dish-model-asset');
             model.setAttribute('scale', dish.scale);
-            
-            // Update dish info
-            document.getElementById('dish-name').textContent = dish.name;
-            document.getElementById('dish-description').textContent = dish.description;
-            document.getElementById('dish-price').textContent = dish.price;
         });
 
         // Handle target found/lost
