@@ -117,14 +117,15 @@ class ARSmartMenu {
             
             const scene = document.getElementById('ar-scene');
             
-            // Wait for scene to fully load
+            // Wait for scene to fully load (longer timeout for slow connections)
             await new Promise((resolve, reject) => {
                 if (scene.hasLoaded) {
                     resolve();
                 } else {
                     scene.addEventListener('loaded', resolve, { once: true });
-                    // Timeout after 10 seconds
-                    setTimeout(() => reject(new Error('Scene load timeout')), 10000);
+                    scene.addEventListener('error', (e) => reject(new Error('Scene failed to load')), { once: true });
+                    // Timeout after 30 seconds
+                    setTimeout(() => reject(new Error('Scene load timeout - check your internet connection')), 30000);
                 }
             });
             
@@ -171,8 +172,13 @@ class ARSmartMenu {
     switchPage(page) {
         this.currentPage = page;
         
-        this.elements.landingPage.classList.toggle('active', page === 'landing');
-        this.elements.arPage.classList.toggle('active', page === 'ar');
+        if (page === 'ar') {
+            this.elements.landingPage.classList.add('hidden');
+            this.elements.arPage.classList.add('active');
+        } else {
+            this.elements.landingPage.classList.remove('hidden');
+            this.elements.arPage.classList.remove('active');
+        }
     }
 
     showLoading(show) {

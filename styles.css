@@ -15,22 +15,29 @@ body {
 
 /* Page Management */
 .page {
-    display: none;
     width: 100%;
     min-height: 100vh;
 }
 
-.page.active {
+#landing-page {
     display: block;
 }
 
-/* AR Page needs special handling */
+#landing-page.hidden {
+    display: none;
+}
+
 #ar-page {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+#ar-page.active {
+    display: block;
 }
 
 /* Landing Page */
