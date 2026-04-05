@@ -22,14 +22,35 @@ class ARSmartMenu {
     }
 
     renderMenu() {
-        const menuHTML = menuData.map(dish => `
-            <div class="menu-item" data-dish-id="${dish.id}">
-                <span class="emoji">${dish.emoji}</span>
-                <span class="category">${dish.category}</span>
-                <h3>${dish.name}</h3>
-                <span class="price">${restaurantConfig.currency}${dish.price.toFixed(2)}</span>
-            </div>
-        `).join('');
+        // Group items by category
+        const categories = {};
+        menuData.forEach(dish => {
+            if (!categories[dish.category]) {
+                categories[dish.category] = [];
+            }
+            categories[dish.category].push(dish);
+        });
+
+        // Define category order
+        const categoryOrder = ['Starters', 'Main Course', 'Desserts', 'Drinks'];
+        
+        let menuHTML = '';
+        categoryOrder.forEach(category => {
+            if (categories[category]) {
+                menuHTML += `<div class="category-section">
+                    <h2 class="category-title">${category}</h2>
+                    <div class="menu-grid">
+                        ${categories[category].map(dish => `
+                            <div class="menu-item" data-dish-id="${dish.id}">
+                                <span class="emoji">${dish.emoji}</span>
+                                <h3>${dish.name}</h3>
+                                <span class="price">${restaurantConfig.currency}${dish.price.toFixed(2)}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>`;
+            }
+        });
         
         this.elements.menuGrid.innerHTML = menuHTML;
     }

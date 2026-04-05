@@ -130,47 +130,159 @@
     <script>
         // Dish data - ADJUST SCALE VALUES HERE
         const dishes = {
-            burger: {
-                name: 'Classic Burger',
-                description: 'Juicy beef patty with fresh lettuce, tomato, cheese',
-                price: '$12.99',
-                model: '#burger-model',
-                scale: '0.03 0.03 0.03'  // Made smaller
+            // STARTERS
+            bruschetta: {
+                name: 'Bruschetta',
+                description: 'Toasted bread with fresh tomatoes, basil, and garlic',
+                price: '$8.99',
+                model: '#salad-model',
+                scale: '0.04 0.04 0.04'
             },
-            pizza: {
-                name: 'Margherita Pizza',
-                description: 'Traditional Italian pizza with fresh mozzarella, basil',
-                price: '$15.99',
-                model: '#pizza-model',
-                scale: '0.15 0.15 0.15'  // Made bigger
+            soup: {
+                name: 'Soup of the Day',
+                description: 'Chef\'s daily creation with artisan bread',
+                price: '$7.99',
+                model: '#salad-model',
+                scale: '0.04 0.04 0.04'
             },
             salad: {
                 name: 'Garden Salad',
                 description: 'Fresh mixed greens with cherry tomatoes, cucumber',
-                price: '$8.99',
+                price: '$9.99',
                 model: '#salad-model',
-                scale: '0.04 0.04 0.04'  // Made smaller
+                scale: '0.04 0.04 0.04'
+            },
+            calamari: {
+                name: 'Fried Calamari',
+                description: 'Crispy squid rings with marinara sauce',
+                price: '$12.99',
+                model: '#salad-model',
+                scale: '0.04 0.04 0.04'
+            },
+            
+            // MAIN COURSES
+            burger: {
+                name: 'Classic Burger',
+                description: 'Juicy beef patty with fresh lettuce, tomato, cheese',
+                price: '$14.99',
+                model: '#burger-model',
+                scale: '0.03 0.03 0.03'
+            },
+            pizza: {
+                name: 'Margherita Pizza',
+                description: 'Traditional Italian pizza with fresh mozzarella, basil',
+                price: '$16.99',
+                model: '#pizza-model',
+                scale: '0.15 0.15 0.15'
             },
             pasta: {
                 name: 'Spaghetti Carbonara',
                 description: 'Creamy pasta with crispy bacon, parmesan cheese',
-                price: '$14.99',
+                price: '$15.99',
                 model: '#pasta-model',
-                scale: '0.08 0.08 0.08'  // Made bigger
+                scale: '0.08 0.08 0.08'
             },
             steak: {
                 name: 'Grilled Ribeye',
                 description: 'Premium 12oz ribeye steak with herb butter',
-                price: '$28.99',
+                price: '$32.99',
                 model: '#steak-model',
-                scale: '0.15 0.15 0.15'  // Made bigger
+                scale: '0.15 0.15 0.15'
             },
+            salmon: {
+                name: 'Grilled Salmon',
+                description: 'Fresh Atlantic salmon with lemon butter sauce',
+                price: '$26.99',
+                model: '#steak-model',
+                scale: '0.15 0.15 0.15'
+            },
+            chicken: {
+                name: 'Roasted Chicken',
+                description: 'Half chicken with rosemary, garlic, and potatoes',
+                price: '$19.99',
+                model: '#burger-model',
+                scale: '0.03 0.03 0.03'
+            },
+            risotto: {
+                name: 'Mushroom Risotto',
+                description: 'Creamy Arborio rice with wild mushrooms',
+                price: '$18.99',
+                model: '#pasta-model',
+                scale: '0.08 0.08 0.08'
+            },
+            lasagna: {
+                name: 'Beef Lasagna',
+                description: 'Layers of pasta, beef ragù, and melted cheese',
+                price: '$17.99',
+                model: '#pasta-model',
+                scale: '0.08 0.08 0.08'
+            },
+            
+            // DESSERTS
             dessert: {
                 name: 'Chocolate Lava Cake',
                 description: 'Warm chocolate cake with molten center',
                 price: '$9.99',
                 model: '#dessert-model',
-                scale: '0.12 0.12 0.12'  // Made bigger
+                scale: '0.12 0.12 0.12'
+            },
+            tiramisu: {
+                name: 'Tiramisu',
+                description: 'Espresso-soaked ladyfingers and mascarpone',
+                price: '$8.99',
+                model: '#dessert-model',
+                scale: '0.12 0.12 0.12'
+            },
+            cheesecake: {
+                name: 'New York Cheesecake',
+                description: 'Creamy cheesecake with berry compote',
+                price: '$9.99',
+                model: '#dessert-model',
+                scale: '0.12 0.12 0.12'
+            },
+            icecream: {
+                name: 'Gelato Selection',
+                description: 'Three scoops of artisan Italian gelato',
+                price: '$7.99',
+                model: '#dessert-model',
+                scale: '0.12 0.12 0.12'
+            },
+            
+            // DRINKS
+            coffee: {
+                name: 'Espresso',
+                description: 'Rich Italian espresso shot',
+                price: '$3.99',
+                model: '#dessert-model',
+                scale: '0.12 0.12 0.12'
+            },
+            latte: {
+                name: 'Caffè Latte',
+                description: 'Espresso with steamed milk',
+                price: '$5.99',
+                model: '#dessert-model',
+                scale: '0.12 0.12 0.12'
+            },
+            wine: {
+                name: 'House Wine',
+                description: 'Glass of red or white wine',
+                price: '$8.99',
+                model: '#dessert-model',
+                scale: '0.12 0.12 0.12'
+            },
+            cocktail: {
+                name: 'Signature Cocktail',
+                description: 'Today\'s special creation',
+                price: '$12.99',
+                model: '#dessert-model',
+                scale: '0.12 0.12 0.12'
+            },
+            lemonade: {
+                name: 'Fresh Lemonade',
+                description: 'Homemade lemonade with mint',
+                price: '$4.99',
+                model: '#dessert-model',
+                scale: '0.12 0.12 0.12'
             }
         };
 

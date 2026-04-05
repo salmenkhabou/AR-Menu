@@ -58,12 +58,29 @@ body {
     font-family: 'Playfair Display', Georgia, serif;
 }
 
+/* Category Sections */
+.category-section {
+    margin-bottom: 30px;
+}
+
+.category-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2d5a3d;
+    text-align: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d4cfc4;
+    letter-spacing: 2px;
+}
+
 /* Menu Grid */
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .menu-item {
