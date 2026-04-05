@@ -110,16 +110,22 @@ class ARSmartMenu {
         this.showLoading(true);
 
         try {
-            // Request camera permission first
-            await navigator.mediaDevices.getUserMedia({ video: true });
-            
-            // Switch to AR page
+            // Switch to AR page first so the scene is in DOM
             this.switchPage('ar');
             
-            // Start MindAR
+            // Wait for scene to be ready
+            const scene = document.getElementById('ar-scene');
+            
+            // Get the MindAR system
+            this.arSystem = scene.systems['mindar-image-system'];
+            
             if (this.arSystem) {
+                console.log('Starting MindAR...');
                 await this.arSystem.start();
                 this.isARActive = true;
+                console.log('MindAR started successfully');
+            } else {
+                throw new Error('MindAR system not found');
             }
             
             this.showLoading(false);
@@ -127,6 +133,7 @@ class ARSmartMenu {
             
         } catch (error) {
             console.error('AR Start Error:', error);
+            alert('AR Error: ' + error.message);
             this.showLoading(false);
             
             if (error.name === 'NotAllowedError') {
