@@ -100,6 +100,8 @@ class ARSmartMenu {
     }
 
     async startAR() {
+        const self = this;
+        
         // Check for camera support
         if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
             alert('Camera access is not supported on this device or browser.');
@@ -107,42 +109,51 @@ class ARSmartMenu {
         }
 
         // Show loading
-        this.showLoading(true);
+        self.showLoading(true);
 
         try {
-            // Switch to AR page first so the scene is in DOM
-            this.switchPage('ar');
+            // Switch to AR page first
+            self.switchPage('ar');
             
-            // Wait for scene to be ready
             const scene = document.getElementById('ar-scene');
             
-            // Get the MindAR system
-            this.arSystem = scene.systems['mindar-image-system'];
+            // Wait for scene to fully load
+            await new Promise((resolve, reject) => {
+                if (scene.hasLoaded) {
+                    resolve();
+                } else {
+                    scene.addEventListener('loaded', resolve, { once: true });
+                    // Timeout after 10 seconds
+                    setTimeout(() => reject(new Error('Scene load timeout')), 10000);
+                }
+            });
             
-            if (this.arSystem) {
-                console.log('Starting MindAR...');
-                await this.arSystem.start();
-                this.isARActive = true;
-                console.log('MindAR started successfully');
-            } else {
-                throw new Error('MindAR system not found');
+            // Get the MindAR system after scene is loaded
+            self.arSystem = scene.systems['mindar-image-system'];
+            
+            if (!self.arSystem) {
+                throw new Error('MindAR system not initialized');
             }
             
-            this.showLoading(false);
-            this.showScanning(true);
+            console.log('Starting MindAR...');
+            await self.arSystem.start();
+            self.isARActive = true;
+            console.log('MindAR started successfully');
+            
+            self.showLoading(false);
+            self.showScanning(true);
             
         } catch (error) {
             console.error('AR Start Error:', error);
-            alert('AR Error: ' + error.message);
-            this.showLoading(false);
+            self.showLoading(false);
             
             if (error.name === 'NotAllowedError') {
-                alert('Camera permission is required for the AR experience. Please allow camera access and try again.');
+                alert('Camera permission denied. Please allow camera access and try again.');
             } else {
-                alert('Unable to start AR experience. Please make sure you\'re using a supported browser (Safari on iOS or Chrome on Android).');
+                alert('Unable to start AR: ' + error.message);
             }
             
-            this.switchPage('landing');
+            self.switchPage('landing');
         }
     }
 
