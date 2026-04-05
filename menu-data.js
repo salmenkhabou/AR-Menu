@@ -66,8 +66,8 @@ const menuData = [
 
 // Restaurant Configuration
 const restaurantConfig = {
-    name: 'AR Smart Menu',
+    name: 'La Palma',
     currency: '$',
-    primaryColor: '#f39c12',
-    secondaryColor: '#e74c3c'
+    primaryColor: '#8b2d2d',
+    secondaryColor: '#2d5a3d'
 };
