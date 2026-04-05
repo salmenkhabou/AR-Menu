@@ -27,7 +27,8 @@ body {
 /* Landing Page */
 #landing-page {
     padding: 20px;
-    padding-bottom: 100px;
+    padding-bottom: 140px;
+    overflow-y: auto;
 }
 
 .container {
@@ -112,9 +113,15 @@ body {
     letter-spacing: 1px;
 }
 
-/* AR Button */
+/* AR Button - Fixed at bottom */
 .ar-button {
-    width: 100%;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    width: calc(100% - 40px);
+    max-width: 560px;
+    margin: 0 auto;
     padding: 18px 30px;
     font-size: 1.2rem;
     font-weight: 600;
@@ -129,6 +136,7 @@ body {
     gap: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 5px 20px rgba(243, 156, 18, 0.4);
+    z-index: 100;
 }
 
 .ar-button:hover {
@@ -145,11 +153,7 @@ body {
 }
 
 .instructions {
-    text-align: center;
-    color: #8892b0;
-    font-size: 0.9rem;
-    margin-top: 20px;
-    padding: 0 20px;
+    display: none; /* Hidden since button is now fixed */
 }
 
 /* AR Page */
