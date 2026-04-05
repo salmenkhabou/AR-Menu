@@ -78,6 +78,11 @@ body {
     border-color: #f39c12;
 }
 
+.menu-item.selected {
+    border-color: #f39c12;
+    background: rgba(243, 156, 18, 0.1);
+}
+
 .menu-item .emoji {
     font-size: 50px;
     display: block;

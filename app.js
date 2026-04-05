@@ -2,6 +2,7 @@
 
 class ARSmartMenu {
     constructor() {
+        this.selectedDish = null;
         this.init();
     }
 
@@ -36,6 +37,27 @@ class ARSmartMenu {
     bindEvents() {
         // Start AR button - navigate to AR page
         this.elements.startARBtn.addEventListener('click', () => this.startAR());
+        
+        // Menu item clicks - select dish
+        this.elements.menuGrid.addEventListener('click', (e) => {
+            const menuItem = e.target.closest('.menu-item');
+            if (menuItem) {
+                this.selectDish(menuItem.dataset.dishId);
+            }
+        });
+    }
+
+    selectDish(dishId) {
+        this.selectedDish = dishId;
+        
+        // Update visual selection
+        document.querySelectorAll('.menu-item').forEach(item => {
+            if (item.dataset.dishId === dishId) {
+                item.classList.add('selected');
+            } else {
+                item.classList.remove('selected');
+            }
+        });
     }
 
     async startAR() {
@@ -57,7 +79,11 @@ class ARSmartMenu {
             
             this.elements.loadingText.textContent = 'Opening AR view...';
             
-            // Navigate to AR page (separate page for clean A-Frame initialization)
+            // Save selected dish to localStorage (default to burger if none selected)
+            const dishToShow = this.selectedDish || 'burger';
+            localStorage.setItem('selectedDish', dishToShow);
+            
+            // Navigate to AR page
             window.location.href = 'ar.html';
             
         } catch (error) {

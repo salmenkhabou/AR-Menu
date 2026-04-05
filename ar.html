@@ -95,14 +95,17 @@
             <a-asset-item id="burger-model" src="./models/burger.glb"></a-asset-item>
             <a-asset-item id="pizza-model" src="./models/pizza.glb"></a-asset-item>
             <a-asset-item id="salad-model" src="./models/salad.glb"></a-asset-item>
+            <a-asset-item id="pasta-model" src="./models/pasta.glb"></a-asset-item>
+            <a-asset-item id="steak-model" src="./models/steak.glb"></a-asset-item>
+            <a-asset-item id="dessert-model" src="./models/desserts.glb"></a-asset-item>
         </a-assets>
 
         <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-        <!-- AR Target 0: Shows Burger -->
+        <!-- AR Target 0: Shows selected dish -->
         <a-entity mindar-image-target="targetIndex: 0">
             <a-gltf-model
-                src="#burger-model"
+                id="dish-model"
                 position="0 0.05 0"
                 scale="0.05 0.05 0.05"
                 rotation="0 0 0"
@@ -118,13 +121,75 @@
         </div>
         
         <div id="dish-info" class="dish-info hidden">
-            <h3 id="dish-name">Classic Burger</h3>
-            <p id="dish-description">Juicy beef patty with fresh lettuce, tomato, cheese</p>
-            <p class="price">$12.99</p>
+            <h3 id="dish-name">Dish Name</h3>
+            <p id="dish-description">Description</p>
+            <p id="dish-price" class="price">$0.00</p>
         </div>
     </div>
 
     <script>
+        // Dish data
+        const dishes = {
+            burger: {
+                name: 'Classic Burger',
+                description: 'Juicy beef patty with fresh lettuce, tomato, cheese',
+                price: '$12.99',
+                model: '#burger-model',
+                scale: '0.05 0.05 0.05'
+            },
+            pizza: {
+                name: 'Margherita Pizza',
+                description: 'Traditional Italian pizza with fresh mozzarella, basil',
+                price: '$15.99',
+                model: '#pizza-model',
+                scale: '0.03 0.03 0.03'
+            },
+            salad: {
+                name: 'Garden Salad',
+                description: 'Fresh mixed greens with cherry tomatoes, cucumber',
+                price: '$8.99',
+                model: '#salad-model',
+                scale: '0.08 0.08 0.08'
+            },
+            pasta: {
+                name: 'Spaghetti Carbonara',
+                description: 'Creamy pasta with crispy bacon, parmesan cheese',
+                price: '$14.99',
+                model: '#pasta-model',
+                scale: '0.05 0.05 0.05'
+            },
+            steak: {
+                name: 'Grilled Ribeye',
+                description: 'Premium 12oz ribeye steak with herb butter',
+                price: '$28.99',
+                model: '#steak-model',
+                scale: '0.1 0.1 0.1'
+            },
+            dessert: {
+                name: 'Chocolate Lava Cake',
+                description: 'Warm chocolate cake with molten center',
+                price: '$9.99',
+                model: '#dessert-model',
+                scale: '0.05 0.05 0.05'
+            }
+        };
+
+        // Get selected dish from localStorage
+        const selectedDishId = localStorage.getItem('selectedDish') || 'burger';
+        const dish = dishes[selectedDishId] || dishes.burger;
+
+        // Wait for scene to load, then set the model
+        document.querySelector('a-scene').addEventListener('loaded', () => {
+            const model = document.getElementById('dish-model');
+            model.setAttribute('src', dish.model);
+            model.setAttribute('scale', dish.scale);
+            
+            // Update dish info
+            document.getElementById('dish-name').textContent = dish.name;
+            document.getElementById('dish-description').textContent = dish.description;
+            document.getElementById('dish-price').textContent = dish.price;
+        });
+
         // Handle target found/lost
         const target = document.querySelector('[mindar-image-target]');
         const scanning = document.getElementById('scanning-indicator');
