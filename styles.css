@@ -13,38 +13,12 @@ body {
     overflow-x: hidden;
 }
 
-/* Page Management */
-.page {
-    width: 100%;
-    min-height: 100vh;
-}
-
-#landing-page {
-    display: block;
-}
-
-#landing-page.hidden {
-    display: none;
-}
-
-#ar-page {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-#ar-page.active {
-    display: block;
-}
-
 /* Landing Page */
 #landing-page {
     padding: 20px;
     padding-bottom: 140px;
     overflow-y: auto;
+    min-height: 100vh;
 }
 
 .container {
@@ -169,121 +143,7 @@ body {
 }
 
 .instructions {
-    display: none; /* Hidden since button is now fixed */
-}
-
-/* AR Page */
-#ar-page {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    background: #000;
-}
-
-#ar-container {
-    width: 100%;
-    height: 100%;
-}
-
-#ar-scene {
-    width: 100%;
-    height: 100%;
-}
-
-/* Back Button */
-.back-button {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 1000;
-    padding: 12px 20px;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #fff;
-    background: rgba(0, 0, 0, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 25px;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-    transition: background 0.3s ease;
-}
-
-.back-button:hover {
-    background: rgba(0, 0, 0, 0.9);
-}
-
-/* AR UI Overlay */
-#ar-ui {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 999;
-    pointer-events: none;
-}
-
-/* Scanning Indicator */
-.scanning {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: #fff;
-}
-
-.scanning.hidden {
     display: none;
-}
-
-.scan-animation {
-    width: 200px;
-    height: 200px;
-    border: 3px solid transparent;
-    border-top-color: #f39c12;
-    border-right-color: #f39c12;
-    border-radius: 50%;
-    margin: 0 auto 20px;
-    animation: scan-rotate 2s linear infinite;
-}
-
-@keyframes scan-rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.scanning p {
-    font-size: 1rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-/* Dish Info Panel */
-.dish-info {
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
-    padding: 40px 20px 30px;
-    text-align: center;
-    pointer-events: auto;
-}
-
-.dish-info.hidden {
-    display: none;
-}
-
-.dish-info h3 {
-    font-size: 1.5rem;
-    margin-bottom: 8px;
-}
-
-.dish-info p {
-    color: #ccc;
-    font-size: 0.95rem;
-    margin-bottom: 10px;
-}
-
-.dish-info .price {
-    color: #f39c12;
-    font-size: 1.3rem;
-    font-weight: 700;
 }
 
 /* Loading Overlay */
@@ -294,15 +154,15 @@ body {
     width: 100%;
     height: 100%;
     background: rgba(26, 26, 46, 0.95);
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     z-index: 2000;
 }
 
-.loading-overlay.hidden {
-    display: none;
+.loading-overlay.visible {
+    display: flex;
 }
 
 .loader {

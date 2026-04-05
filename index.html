@@ -2,17 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
     <title>AR Smart Menu</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- A-Frame -->
-    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-    <!-- MindAR -->
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
 </head>
 <body>
     <!-- Landing Page -->
-    <div id="landing-page" class="page">
+    <div id="landing-page">
         <div class="container">
             <div class="logo">
                 <span class="logo-icon">🍽️</span>
@@ -28,100 +24,13 @@
                 <span class="camera-icon">📷</span>
                 Start AR Experience
             </button>
-            
-            <p class="instructions">Point your camera at the menu marker to see dishes in 3D</p>
-        </div>
-    </div>
-
-    <!-- AR View -->
-    <div id="ar-page" class="page">
-        <button id="back-btn" class="back-button">← Back to Menu</button>
-        
-        <div id="ar-container">
-            <!-- A-Frame AR Scene -->
-            <a-scene
-                id="ar-scene"
-                mindar-image="imageTargetSrc: ./targets/targets.mind; autoStart: false; uiLoading: no; uiError: no; uiScanning: no;"
-                color-space="sRGB"
-                renderer="colorManagement: true; physicallyCorrectLights: true;"
-                vr-mode-ui="enabled: false"
-                device-orientation-permission-ui="enabled: false"
-                loading-screen="enabled: false"
-                embedded
-            >
-                <a-assets>
-                    <!-- Preload 3D models -->
-                    <a-asset-item id="burger-model" src="./models/burger.glb"></a-asset-item>
-                    <a-asset-item id="pizza-model" src="./models/pizza.glb"></a-asset-item>
-                    <a-asset-item id="salad-model" src="./models/salad.glb"></a-asset-item>
-                    <a-asset-item id="pasta-model" src="./models/pasta.glb"></a-asset-item>
-                    <a-asset-item id="steak-model" src="./models/steak.glb"></a-asset-item>
-                    <a-asset-item id="dessert-model" src="./models/desserts.glb"></a-asset-item>
-                </a-assets>
-
-                <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-
-                <!-- AR Target 0: Main Menu Marker -->
-                <a-entity mindar-image-target="targetIndex: 0">
-                    <!-- Burger -->
-                    <a-entity
-                        id="ar-burger"
-                        gltf-model="#burger-model"
-                        position="0 0 0.1"
-                        scale="0.3 0.3 0.3"
-                        animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear"
-                        visible="true"
-                        class="ar-dish"
-                    ></a-entity>
-                </a-entity>
-
-                <!-- AR Target 1: Pizza Marker -->
-                <a-entity mindar-image-target="targetIndex: 1">
-                    <a-entity
-                        id="ar-pizza"
-                        gltf-model="#pizza-model"
-                        position="0 0 0.1"
-                        scale="0.3 0.3 0.3"
-                        animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear"
-                        visible="true"
-                        class="ar-dish"
-                    ></a-entity>
-                </a-entity>
-
-                <!-- AR Target 2: Salad Marker -->
-                <a-entity mindar-image-target="targetIndex: 2">
-                    <a-entity
-                        id="ar-salad"
-                        gltf-model="#salad-model"
-                        position="0 0 0.1"
-                        scale="0.3 0.3 0.3"
-                        animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear"
-                        visible="true"
-                        class="ar-dish"
-                    ></a-entity>
-                </a-entity>
-            </a-scene>
-        </div>
-
-        <!-- AR UI Overlay -->
-        <div id="ar-ui">
-            <div id="scanning-indicator" class="scanning">
-                <div class="scan-animation"></div>
-                <p>Scanning for menu marker...</p>
-            </div>
-            
-            <div id="dish-info" class="dish-info hidden">
-                <h3 id="dish-name">Dish Name</h3>
-                <p id="dish-description">Description</p>
-                <p id="dish-price" class="price">$0.00</p>
-            </div>
         </div>
     </div>
 
     <!-- Loading Overlay -->
-    <div id="loading-overlay" class="loading-overlay hidden">
+    <div id="loading-overlay" class="loading-overlay">
         <div class="loader"></div>
-        <p>Loading AR Experience...</p>
+        <p id="loading-text">Loading AR Experience...</p>
     </div>
 
     <script src="menu-data.js"></script>
