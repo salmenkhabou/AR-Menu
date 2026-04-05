@@ -1,0 +1,24 @@
+{
+  "name": "ar-smart-menu",
+  "version": "1.0.0",
+  "description": "Interactive WebAR Smart Menu for restaurants",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve . -l 3000"
+  },
+  "keywords": [
+    "webxr",
+    "ar",
+    "augmented-reality",
+    "restaurant",
+    "menu",
+    "mindar",
+    "aframe"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.0"
+  }
+}
